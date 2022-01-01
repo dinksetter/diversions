@@ -12,7 +12,7 @@ The first thing to do was to recreate the original png file from the funky
 CGA 640x200 memory dump file. I grabbed the [uuencoded file](https://pastebin.com/nCWZmex9) posted in the description of the video. After a quick uudecode
 (thanks, '80s!), I had the file.
 
-The next step was to -steal-borrow Dave's encoder script, written in perl,
+The next step was to ~~steal~~borrow Dave's encoder script, written in perl,
 and attempt to reverse the logic using ImageMagick's perl bindingsto create
 a png file from the script. This was my first attempt to use PerlMagick, so
 the documentation proved helpful. What was not helpful was that the perl
