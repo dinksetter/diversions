@@ -26,6 +26,7 @@ perfectly, leaving me with a viable [png file](take1.png).
 
 ![take 1](take1.png)
 
+## Round 2
 After looking at the uuencoded file, it was clear that there's more data
 there. Watching the video, I knew that the block of 192 bytes after the
 first 8000 was "unused memory" in the CGA buffer. A perfect place to hide
@@ -94,21 +95,34 @@ the graphics should consist of 3-pixel blocks, with a set pixel after them.
 
 ![attempt 3](bonus-v2b.png) Nope.
 
+## The final round
+
 Let's take a closer look at the data. It looks like there's a similar looking
 structure to the first 80 bytes in the extra chunk as there is in the second
-80 bytes. Hmm...I wonder what would happen if I just made a png file with the
+80 bytes. Especially towards the end of the chunk.
+
+```
+...
+0008064 ff f5 bb df bb ff ff ff ff ff ff ff ff ff ff ff
+...
+0008144 71 f3 bb 55 bb ff ff ff ff ff ff ff ff ff ff ff
+...
+```
+
+Hmm...I wonder what would happen if I just made a png file with the
 first 160 bytes of the extra data and discarded the last 32?
 
 640x4 monochrome?
 
 ![attempt 4](bonus-v2c.png) Ah...what's that?
 
-I can almost
-make out some text there. Does that say Gary Kildall? Why is it so blocky?
+I can almost make out some text there. Does that say Gary Kildall? Why is
+it so blocky? (Note -- this is when I found the quote online attributed to
+GK and contacted Dave.)
 
 Finally, I realized that I didn't need the extra png file. The extra data
 could be read in the same way the rest of the file was. 160 bytes of the
-192 could be used to add two rows to the image, then I could add the 32
+192 could be used to add two rows to the image per pass, then I could add the 32
 remaining bytes on the next line. Plus, the interleaving would be right.
 
 ![eureka](take4.png)
