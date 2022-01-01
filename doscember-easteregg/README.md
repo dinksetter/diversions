@@ -127,3 +127,4 @@ remaining bytes on the next line. Plus, the interleaving would be right.
 
 ![eureka](take4.png)
 
+[The final working version](cgadecode-v3.pl)
