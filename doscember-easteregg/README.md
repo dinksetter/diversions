@@ -77,27 +77,39 @@ to get a single 48x64 image.
 Instead of just reading and dumping the bytes out, I made another png file
 from the extra bits.
 
-48x64 monochrome ![attempt 1](bonus-v2.png) Nope.
-16x64 color ![attempt 2](bonus-v2a.png) Nope.
+48x64 monochrome?
+
+![attempt 1](bonus-v2.png) Nope.
+
+16x64 color?
+
+![attempt 2](bonus-v2a.png) Nope.
 
 Somewhere along the way, I noticed that the extra data in the file was
 made up of all odd-numbered nibbles (4-bit chunks). That meant that the
 low-order bit (1) of each 4-bit pattern was always set, which means that
 the graphics should consist of 3-pixel blocks, with a set pixel after them.
 
-768x4 monochrome ![attempt 3](bonus-v2b.png) Nope.
+768x4 monochrome?
+
+![attempt 3](bonus-v2b.png) Nope.
+
 Let's take a closer look at the data. It looks like there's a similar looking
 structure to the first 80 bytes in the extra chunk as there is in the second
 80 bytes. Hmm...I wonder what would happen if I just made a png file with the
 first 160 bytes of the extra data and discarded the last 32?
 
-640x4 monochrome ![attempt 4](bonus-v2c.png) Ah...what's that? I can almost
+640x4 monochrome?
+
+![attempt 4](bonus-v2c.png) Ah...what's that?
+
+I can almost
 make out some text there. Does that say Gary Kildall? Why is it so blocky?
 
 Finally, I realized that I didn't need the extra png file. The extra data
 could be read in the same way the rest of the file was. 160 bytes of the
 192 could be used to add two rows to the image, then I could add the 32
-remaining bytes on the next line.
+remaining bytes on the next line. Plus, the interleaving would be right.
 
 ![eureka](take4.png)
 
